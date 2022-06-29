@@ -20,6 +20,10 @@ export class UsersService {
     return await this.usersRepository.findOne(username);
   }
 
+  async findById(_id: string): Promise<User>{
+    return await this.usersRepository.findById(_id)
+  }
+
   update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }

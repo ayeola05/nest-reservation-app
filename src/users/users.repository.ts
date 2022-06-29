@@ -15,8 +15,10 @@ export class UsersRepository {
 
     async findOne(username: string): Promise<User | undefined>{
         const user = await this.userModel.findOne({email: username})
-        console.log(username)
-        console.log(user)
         return user
+    }
+
+    async findById(_id: string): Promise<User>{
+        return await this.userModel.findById(_id)
     }
 }
