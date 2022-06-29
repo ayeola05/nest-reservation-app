@@ -20,16 +20,17 @@ export class UsersController {
     return this.authService.login(req.user)
   }
 
-  @Post()
+  @Post("signup")
   @UsePipes(ValidationPipe)
-  async create(@Body() createUserDto: CreateUserDto): Promise<User> {
+  async signUp(@Request() req, @Body() createUserDto: CreateUserDto): Promise<any> {
     try{
       const user = await this.usersService.create(createUserDto);
-      if(user) return user
+      if(user) return this.authService.login(user)
       else throw new HttpException("Invalid data", HttpStatus.BAD_REQUEST)
     }catch(e){
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST)
     }
+
   }
 
   @Get("profile")
