@@ -12,4 +12,11 @@ export class UsersRepository {
         const newUser = new this.userModel(createUserDto)
         return await newUser.save()
     }
+
+    async findOne(username: string): Promise<User | undefined>{
+        const user = await this.userModel.findOne({email: username})
+        console.log(username)
+        console.log(user)
+        return user
+    }
 }
